@@ -172,11 +172,11 @@ function VideoDetails() {
       return
     }
     const newCommentData = editItem ? {
-      parent_id : video?.id,
+      parent_id : id,
       text: newCommentValue,
       id : editItem.id
     } : {
-      parent_id : video?.id,
+      parent_id : id,
       text: newCommentValue,
     }
     if(editItem){
@@ -267,12 +267,12 @@ function VideoDetails() {
           </p>
         </div>
         <div className="mt-5">
-        <div className="flex gap-5 w-full p-2 rounded-lg hover:bg-stone-700">
+        {video && <div className="flex gap-5 w-full p-2 rounded-lg hover:bg-stone-700">
           <input id="editComment" value={newCommentValue} onChange={(e) => setNewCommentValue(e.target.value)} type="text" placeholder="Your opinion..." className=" px-3 py-3 bg-inherit focus:outline-none border w-full rounded-full h-full"/>
           <FontAwesomeIcon icon={faPaperPlane}  className="cursor-pointer bg-stone-800 p-3 rounded-full" onClick={handleVideoCreateComment}/>
-        </div>
-        {video && interact.comments && interact.comments[video?.id] &&
-            interact.comments[video?.id].map((comment) => {
+        </div>}
+        {interact.comments && interact.comments[id] &&
+            interact.comments[id].map((comment) => {
               if(editId == comment.id){
                 return
               }

@@ -4,9 +4,9 @@ const interactSlice = createSlice({
   name: "interact",
   initialState: {
     sidebar: false,
-    API_KEY_YT: "cb32f621a1msh531fb7dad5243e2p1e56aejsn8790531a0392",
-    comments: JSON.parse(localStorage.getItem("comments")) || [],
-    id: 1,
+    API_KEY_YT: "2e8ac1e581msh74fa903e93d0a16p1cdb7fjsndd2e41461434",
+    comments: JSON.parse(localStorage.getItem("comments")) || {},
+    id: JSON.parse(localStorage.getItem("idcount")) || 1,
   },
   reducers: {
     toggleSidebar: (state) => {
@@ -20,6 +20,7 @@ const interactSlice = createSlice({
       state.comments[action.payload.parent_id].push(newComment);
       state.id += 1;
       localStorage.setItem("comments", JSON.stringify(state.comments));
+      localStorage.setItem("idcount", JSON.stringify(state.id));
     },
     deleteComment: (state, action) => {
       state.comments[action.payload.parent_id] = state.comments[
